@@ -2,18 +2,28 @@ from pydantic import BaseModel,Field
 from enum import Enum
 from typing import Annotated
 
-
-
 class BookOut(BaseModel):
-    id : int
-    title : str
-    auther : str
-    year : int
-    genre : str
-    rating : float
+    id :int
+    title:str
+    author : str
+    genre :str
+    year :int
+    rating :float
     
     class Config:
         from_attributes = True
+
+class Genre(str, Enum):
+    fiction = "Fiction"
+    nonfiction = "Non-Fiction"
+    mystery = "Mystery"
+    fantasy = "Fantasy"
+    science_fiction = "Science Fiction"
+    biography = "Biography"
+    history = "History"
+    romance = "Romance"
+    horror = "Horror"
+
 
 class BookCreate(BaseModel):
     title:str = Field(min_length=3)

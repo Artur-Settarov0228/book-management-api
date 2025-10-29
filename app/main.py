@@ -1,4 +1,11 @@
+from fastapi import FastAPI
 
-from app.database.database import Base, engine
+from .database import Base,engine
+from app.models import *
+from app.routers import router
 
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(engine)
+
+app = FastAPI(title='Books Api')
+
+app.include_router(router)
